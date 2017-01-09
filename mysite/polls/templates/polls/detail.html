@@ -1,0 +1,53 @@
+
+
+{% extends "polls/base.html" %}
+
+{% block detailcontent %}
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+<div class="jumbotron vertical-center">
+<div class = "container">
+    <div class = "span12">
+<div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>{{ question.question_text }}</h3>
+                </div>
+                <div class="panel-body two-col">
+                    <div class="row">
+
+            {% for choice in question.choice_set.all %}
+                        <div class="col-md-6">
+                            <div class="well well-sm">
+                                <div class="checkbox">
+                                    <label>
+                                      <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+{% endfor %}
+
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" value="vote" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-ok"></span>Vote</button>
+                    <a href = "{% url 'polls:results' question.id %}"><button type="button" class="btn btn-primary btn-sm">
+                        View Result</button></a>
+                    <a href = "{% url 'polls:index'%}"><button type="button" class="btn btn-danger btn-sm">
+                        Return Home</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </form>
+{% endblock %}

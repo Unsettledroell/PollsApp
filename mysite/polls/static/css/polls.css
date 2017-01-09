@@ -1,0 +1,27 @@
+p{
+  color :red;
+}
+body{
+  background-image:no-repeat center center fixed;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+
+
+
+    background-size: cover;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+    background-color: transparent;
+}
